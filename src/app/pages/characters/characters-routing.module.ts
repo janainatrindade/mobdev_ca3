@@ -7,10 +7,6 @@ const routes: Routes = [
   {
     path: '',
     component: CharactersPage
-  },
-  {
-    path: 'characters',
-    loadChildren: () => import('./characters.module').then( m => m.CharactersPageModule)
   }
 ];
 
@@ -18,4 +14,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class FilmsPageRoutingModule {}
+export class CharactersPageRoutingModule {}
