@@ -18,10 +18,10 @@ export class EpisodesPage implements OnInit {
     this.episodes = this.http.get('https://www.breakingbadapi.com/api/episodes');
   }
  
-  openDetails(episode) {
-    let split = episode.url.split('/');
-    let episodeId = split[split.length-2];
-    this.router.navigateByUrl(`/tabs/episodes/${episodeId}`);
+  openDetails(episodes) {
+    let split = episodes.url.split('/');
+    let episodesId = split[split.length-2];
+    this.router.navigateByUrl('/tabs/episodes/${episodesId}');
   }
 
 }
