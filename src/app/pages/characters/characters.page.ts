@@ -18,8 +18,9 @@ export class CharactersPage implements OnInit {
     this.characters = this.http.get('https://www.breakingbadapi.com/api/characters');
   }
  
-  openDetails(character) {
-    let split = character.url.split('/');
+  openDetails(characters) {
+    typeof(characters);
+    let split = characters.url.split('/');
     let characterId = split[split.length-2];
     this.router.navigateByUrl(`/tabs/characters/${characterId}`);
   }

@@ -1,9 +1,40 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>character-details</ion-title>
+  <ion-toolbar color=" primary">
+    <ion-buttons slot="start" defaultHref="/tabs/characters">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ character?.name }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="unfavoriteepisode()" *ngIf="isFavorite">
+        <ion-icon name="star" slot="icon-only" color="warning"></ion-icon>
+      </ion-button>
+      <ion-button (click)="favoriteepisode()" *ngIf="!isFavorite">
+        <ion-icon name="star-outline" slot="icon-only" color="warning"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content padding>
+  <ion-card *ngIf="character" class="movie-card">
+    <ion-item>
+      Occupation: {{character.occupation}}
+    </ion-item>
+    <ion-item>
+      Birthday: {{character.birthday}}
+    </ion-item>
+    <ion-item>
+      <ion-icon name="person-outline" slot="start"></ion-icon>
+      Nickname: {{ character.nickname }}
+      Actor Name: {{character.portrayed}}
+    </ion-item>
+    <ion-card-content>
+      <ion-item>
+        <ion-icon name="videocam-outline" slot="start"></ion-icon>
+        Seasons: {{ character.appearance }}
+      </ion-item>
+      <img src="{{ character.img }}" alt="{{ character.nickname }}" width="240" height="300">
+    </ion-card-content>
+  </ion-card>
 
 </ion-content>
