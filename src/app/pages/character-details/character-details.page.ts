@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { ApiService } from '../../services/api.service';
 
 @Component({
   selector: 'app-character-details',
@@ -9,15 +10,17 @@ import { HttpClient } from '@angular/common/http';
 })
 export class CharacterDetailsPage implements OnInit {
 
-  characters: any;
+  character: any;
+  characterId = null;
 
-  constructor(private activatedRoute: ActivatedRoute, private http: HttpClient) { }
- 
+  constructor(private  activatedRoute: ActivatedRoute, private api: ApiService) { }
+
   ngOnInit() {
-    let id = this.activatedRoute.snapshot.paramMap.get('id');
-    this.http.get(`https://swapi.dev/api/characters/${id}`).subscribe(res => {
-      this.characters = res;
-    });
+      
+      this.characterId = this.activatedRoute.snapshot.paramMap.get(`id`);
+      this.api.getCharacter(this.characterId).subscribe(res => {
+      this.character = res[0];
+    })
   }
 
 }
