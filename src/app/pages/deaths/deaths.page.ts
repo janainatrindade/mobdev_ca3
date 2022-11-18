@@ -12,17 +12,21 @@ import { Observable } from 'rxjs';
 export class DeathsPage implements OnInit {
 
     deaths: Observable<any>;
-    deathsId: Observable<any>;
+    characters: Observable<any>;
+    name: string = '';
   
 
     constructor(private router: Router, private api: ApiService) { }
 
     ngOnInit() {
-        this.deaths = this.api.getDeaths();
-        // this.deaths.subscribe(data => {
-        //     console.log('my data', data);
-        // });
+        this.deaths = this.api.getDeathCount(this.name);
+        this.deaths.subscribe(data => { console.log('my data', data); });
+        this.characters = this.api.getCharacters();
+        this.characters.subscribe(data => {
+        console.log('my data: ', data);
+        });
     }
+ 
 
     // openDetails(death) {
     //     let deathsId = death.death_id;

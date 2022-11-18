@@ -47,4 +47,7 @@ export class ApiService {
     getDeath(id) {
         return this.http.get(`https://www.breakingbadapi.com/api/deaths/${id}`);
     }
+    getDeathCount(search) {
+        return this.http.get(`https://www.breakingbadapi.com/api/death-count?name=${search}`)
+    }
 }

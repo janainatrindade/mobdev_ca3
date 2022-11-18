@@ -1,13 +1,29 @@
 <ion-header>
 	<ion-toolbar color="secondary">
-	  <ion-title>Deaths</ion-title>
+		<ion-title>Death Count</ion-title>
 	</ion-toolbar>
-  </ion-header>
-  
-  <ion-content>
-	  <ion-list>
-		  <ion-item button detail lines="inset" *ngFor="let death of deaths | async" >
-		  {{ death.deathCount }}
-		  </ion-item>
-	  </ion-list>
-  </ion-content>
+	<ion-toolbar>
+		<ion-searchbar color="light" [(ngModel)]="name" (ionChange)="ngOnInit($event)"
+			placeholder="Search by Name (e.g Walter White)"></ion-searchbar>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+	<ion-card *ngFor="let death of deaths | async" class="movie-card">
+		<ion-item class="movie-info" lines="none">
+			<ion-icon name="person-outline" slot="start"></ion-icon>
+			Name: {{ death.name }}
+		</ion-item>
+
+		<ion-item class="movie-info" lines="none">
+			<ion-icon name="skull-outline" slot="start"></ion-icon>
+			Death Count: {{ death.deathCount }}
+		</ion-item>
+	</ion-card>
+	<ion-list>
+        <ion-item lines="inset" *ngFor="let character of characters | async">
+        {{ character?.name }}
+        </ion-item>
+    </ion-list>
+
+</ion-content>
