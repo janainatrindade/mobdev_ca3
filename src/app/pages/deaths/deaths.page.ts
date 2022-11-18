@@ -27,10 +27,4 @@ export class DeathsPage implements OnInit {
         });
     }
  
-
-    // openDetails(death) {
-    //     let deathsId = death.death_id;
-    //     this.router.navigateByUrl(`/tabs/deaths/${deathsId}`);
-
-    // }
 }
