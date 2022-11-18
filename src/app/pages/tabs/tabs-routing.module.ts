@@ -39,6 +39,10 @@ const routes: Routes = [
                     {
                         path: '',
                         loadChildren: () => import('../quotes/quotes.module').then(m => m.QuotesPageModule)
+                    },
+                    {
+                        path: ':id',
+                        loadChildren: () => import('../quote-details/quote-details.module').then(m => m.QuoteDetailsPageModule)
                     }
                 ]
             },
@@ -48,6 +52,10 @@ const routes: Routes = [
                     {
                         path: '',
                         loadChildren: () => import('../deaths/deaths.module').then(m => m.DeathsPageModule)
+                    },
+                    {
+                        path: ':id',
+                        loadChildren: () => import('../death-details/death-details.module').then(m => m.DeathDetailsPageModule)
                     }
                 ]
             }

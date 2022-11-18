@@ -1,22 +1,32 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../../services/api.service';
 import { Router } from '@angular/router';
-import { NavController } from '@ionic/angular';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+
+
 @Component({
-  selector: 'app-deaths',
-  templateUrl: './deaths.page.html',
-  styleUrls: ['./deaths.page.scss'],
+    selector: 'app-deaths',
+    templateUrl: './deaths.page.html',
+    styleUrls: ['./deaths.page.scss'],
 })
 export class DeathsPage implements OnInit {
 
-  deaths: Observable<any>;
- 
-  constructor(private router: Router, private http: HttpClient) { }
+    deaths: Observable<any>;
+    deathsId: Observable<any>;
+  
 
-  ngOnInit() {
-    this.deaths = this.http.get('https://www.breakingbadapi.com/api/deaths');
-  }
- 
+    constructor(private router: Router, private api: ApiService) { }
 
+    ngOnInit() {
+        this.deaths = this.api.getDeaths();
+        this.deaths.subscribe(data => {
+            console.log('my data', data);
+        });
+    }
+
+    openDetails(death) {
+        let deathsId = death.death_id;
+        this.router.navigateByUrl(`/tabs/deaths/${deathsId}`);
+
+    }
 }

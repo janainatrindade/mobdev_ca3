@@ -1,9 +1,7 @@
+import { ApiService } from './../../services/api.service';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { NavController } from '@ionic/angular';
-import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
+
 @Component({
   selector: 'app-episode-details',
   templateUrl: './episode-details.page.html',
@@ -11,15 +9,15 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class EpisodeDetailsPage implements OnInit {
 
-  episodes: any;
- 
-  constructor(private activatedRoute: ActivatedRoute, private http: HttpClient) { }
+  episode: any;
+  episodeId = null;
+
+  constructor(private activatedRoute: ActivatedRoute, private api: ApiService) {}
 
   ngOnInit() {
-    let id = this.activatedRoute.snapshot.paramMap.get('id');
-    this.http.get(`https://www.breakingbadapi.com/api/episodes/${id}`).subscribe(res => {
-      this.episodes = res;
-    });
+    this.episodeId = this.activatedRoute.snapshot.paramMap.get(`id`);
+    this.api.getEpisode(this.episodeId).subscribe(res => {
+      this.episode = res[0];
+    })
   }
-
 }
