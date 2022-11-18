@@ -1,7 +1,7 @@
-MOBDEV - CA3
+### MOBDEV - CA3
 Ionic application that consume Breaking Bad API with the tabs: Characters, Episodes, Quotes and Deaths
 
-##References
+## References
 
 breakingbadapi.com. (n.d.). The Breaking Bad API. [online] Available at: https://breakingbadapi.com/ [Accessed 18 Nov. 2022].
 
